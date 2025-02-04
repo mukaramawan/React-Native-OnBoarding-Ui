@@ -9,14 +9,16 @@ import React from "react";
 import Onboarding from "react-native-onboarding-swiper";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
+import { setItems } from "../utills/asyncStorage";
 
 const { width, height } = Dimensions.get("window");
 
 const OnBoardingScreen = () => {
   const navigation = useNavigation();
 
-  const handleDone = () => {
+  const handleDone = async () => {
     navigation.navigate("Home");
+    await setItems("onBoarded", "true");
   };
 
   const doneButton = ({ ...props }) => {
